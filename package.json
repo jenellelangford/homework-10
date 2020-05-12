@@ -1,0 +1,23 @@
+{
+  "name": "homework-10",
+  "version": "1.0.0",
+  "description": "Eat The Burger",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jenellelangford/homework-10.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jenellelangford/homework-10/issues"
+  },
+  "homepage": "https://github.com/jenellelangford/homework-10#readme",
+  "dependencies": {
+    "express": "^4.17.1",
+    "express-handlebars": "^4.0.4"
+  }
+}
