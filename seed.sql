@@ -1,1 +1,0 @@
-USE burgers_db;
