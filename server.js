@@ -15,6 +15,7 @@ const dbConfig = (process.env.NODE_ENV === 'production') ? dbConfig.heroku : con
 // 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
+app.use(express.static("public"));
 
 // Set Handlebars as the default templating engine.
 app.engine("handlebars", exphbs({ defaultLayout: "main" }));
@@ -41,22 +42,30 @@ connection.connect(function(err) {
 
 // ROUTES
 app.get('/', function(req,res) {
-  connection.query('SELECT * FROM burgers;', function (err, data) {
-    if (err) {
-      throw err; 
+  connection.query('SELECT * FROM burgers;', function (err, response) {
+    if (err) throw err; 
+    const haveBurger = [];
+    const yumBurger = [];
+    for (var i =0; i < response.length; i++) {
+      if (response[i].devoured) {
+        yum.push(response[i])
+      }
     }
-    res.render('index', {burgers: data});
+    
+    res.render('index', {haveBurger: haveBurger, yumBurger: yumBurger });
   });
   
 });
 
 app.post("/", function(req, res) {
-  connection.query("INSERT INTO burgers VALUES (?)", [req.body.burgers], function(err, result) {
-    if (err) {
-      throw err;
+  connection.query("INSERT INTO burgers VALUES (?)", { burger_name: req.body.burger, devoured: false }, 
+  {
+    function (err, res) {
+      if (err) throw err;
     }
-    res.redirect("/");
-  });
+  };
+    res.redirect("/")
+
 });
 
 
