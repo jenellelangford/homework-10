@@ -39,9 +39,6 @@ connection.connect(function(err) {
 //Event Listener for Submit button
 //document.getElementById("submit-button").addEventListener("click", submitBurger());
 
-//Function once Submit button is clicked
-//function submitBurger() {
-
 // ROUTES
 app.get('/', function (req,res) {
   connection.query('SELECT * FROM burgers;', function (err, response) {
@@ -57,8 +54,11 @@ app.get('/', function (req,res) {
     res.render('index', {orderedBurger: orderedBurger, eatenBurger: eatenBurger });
   })
   
-})
-//};
+});
+
+
+//Function once Submit button is clicked
+function submitBurger() {
 
 app.post("/", function(req, res) {
   connection.query("INSERT INTO burgers VALUES (?)", { burger_name: req.body.burgers, devoured: false }, 
@@ -68,8 +68,8 @@ app.post("/", function(req, res) {
     }
   });
     res.redirect("/")
-});
-
+})
+};
 
 
 
