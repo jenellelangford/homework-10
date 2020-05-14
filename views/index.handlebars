@@ -3,7 +3,7 @@
 <h3>Enter burger you would like to eat and hit the Submit button.</h3>
 
 <ul>
-  {{#each haveBurger}}
+  {{#each orderedBurger}}
   	<li>
   	   <p>{{burger_name}}</p>
   	</li>
@@ -14,6 +14,6 @@
   <form action="/" method="POST">
   	<textarea type="text" name="wish"></textarea>
 
-  	<button type="submit">Submit</button>
+  	<button id='submit-button' type="submit">Submit</button>
   </form>
 </div>

@@ -9,7 +9,7 @@ const app = express();
 
 // Set the port of our application
 // process.env.PORT lets the port be set by Heroku
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 3001;
 
 // 
 app.use(express.urlencoded({ extended: true }));
@@ -36,8 +36,14 @@ connection.connect(function(err) {
   console.log("connected as id " + connection.threadId);
 });
 
+//Event Listener for Submit button
+document.getElementById("submit-button").addEventListener("click", submitBurger());
+
+//Function once Submit button is clicked
+function submitBurger() {
+
 // ROUTES
-app.get('/', function(req,res) {
+app.get('/', function (req,res) {
   connection.query('SELECT * FROM burgers;', function (err, response) {
     if (err) throw err; 
     const orderedBurger = [];
@@ -49,9 +55,10 @@ app.get('/', function(req,res) {
     }
     
     res.render('index', {orderedBurger: orderedBurger, eatenBurger: eatenBurger });
-  });
+  })
   
-});
+})
+};
 
 app.post("/", function(req, res) {
   connection.query("INSERT INTO burgers VALUES (?)", { burger_name: req.body.burgers, devoured: false }, 
