@@ -1,3 +1,5 @@
+web: server.js
+
 mysql://mb0zcukxt9ff2dpu:fem9i5ip8xl069zb@qn66usrj1lwdk1cc.cbetxkdyhwsb.us-east-1.rds.amazonaws.com:3306/ha4a7cr7o6vl4ygy
 
 
