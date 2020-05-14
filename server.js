@@ -37,10 +37,10 @@ connection.connect(function(err) {
 });
 
 //Event Listener for Submit button
-document.getElementById("submit-button").addEventListener("click", submitBurger());
+//document.getElementById("submit-button").addEventListener("click", submitBurger());
 
 //Function once Submit button is clicked
-function submitBurger() {
+//function submitBurger() {
 
 // ROUTES
 app.get('/', function (req,res) {
@@ -58,7 +58,7 @@ app.get('/', function (req,res) {
   })
   
 })
-};
+//};
 
 app.post("/", function(req, res) {
   connection.query("INSERT INTO burgers VALUES (?)", { burger_name: req.body.burgers, devoured: false }, 
