@@ -2,15 +2,14 @@
 const express = require('express');
 const exphbs = require('express-handlebars');
 const mysql = require('mysql');
-
+const config = require('./config/db');
 
 // Create an instance of the express app.
 const app = express();
 
 // Set the port of our application
 // process.env.PORT lets the port be set by Heroku
-const PORT = process.env.PORT || 3002;
-// const dbConfig = (process.env.NODE_ENV === 'production') ? dbConfig.heroku : config.db
+const PORT = process.env.PORT || 3000;
 
 // 
 app.use(express.urlencoded({ extended: true }));
@@ -21,14 +20,11 @@ app.use(express.static("public"));
 app.engine("handlebars", exphbs({ defaultLayout: "main" }));
 app.set("view engine", "handlebars");
 
-
-  const connection = mysql.createConnection({
-    host: "localhost",
-    port: 3002,
-    user: "jenelle",
-    password: "jenelle123",
-    database: "burgers_db",
-  });
+let dbConfig = config.local
+if( process.env.NODE_ENV === 'production' ) {
+  dbConfig = config.production
+}
+const connection = mysql.createConnection(dbConfig);
 
 
 
